@@ -2,12 +2,10 @@ package fabflix.fabflixmobile;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -37,7 +35,6 @@ public class LoginActivity extends Activity{
     private EditText emailText;
     private EditText passwordText;
     private Button mloginButton;
-    private AccessDB access;
     private Dialog progressDialog;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,13 +83,13 @@ public class LoginActivity extends Activity{
     public void loginHandler(final String email, final String password) {
 
 
-        final Map<String, String> params = new HashMap<String, String>();
+        final Map<String, String> params = new HashMap<>();
 
         // no user is logged in, so we must connect to the server
         RequestQueue queue = Volley.newRequestQueue(this);
 
         final Context context = this;
-        String url = "http://192.168.0.104:8080/fabflix/MobileLogin";
+        String url = "http://" + Constants.ADDRESS + ":8080/fabflix/MobileLogin";
         progressDialog = ProgressDialog.show(
                 LoginActivity.this, "", "Logging in...", true);
 
